@@ -1,9 +1,13 @@
 import React from "react";
 import './App.css';
 import NavigationBar from "./components/NavigationBar";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
 import Welcome from "./components/Welcome";
 import Footer from "./components/Footer";
+import BookList from "./components/BookList";
+import Book from "./components/Book";
 
 
 function App() {
@@ -15,14 +19,18 @@ function App() {
     return (
         <div className="App">
             <NavigationBar/>
-            <Container>
+            <Router>
                 <Row>
                     <Col lg={12} style={marginTop}>
-                        <Welcome/>
-                         <Footer/>
+                        <Switch>
+                            <Route path={"/"} exact component={Welcome}/>
+                            <Route path={"/add"} exact component={BookList}/>
+                            <Route path={"/list"} exact component={Book}/>
+                        </Switch>
                     </Col>
                 </Row>
-            </Container>
+            </Router>
+            <Footer/>
         </div>
     );
 }
