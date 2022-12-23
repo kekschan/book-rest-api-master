@@ -14,8 +14,8 @@ class NavigationBar extends React.Component{
                />Книжный магазин
                </Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="#">Add Book</Nav.Link>
-                    <Nav.Link href="#">List Books</Nav.Link>
+                    <Nav.Link href="#">Добавить книгу</Nav.Link>
+                    <Nav.Link href="#">Список книг</Nav.Link>
                 </Nav>
             </Navbar>
         );
