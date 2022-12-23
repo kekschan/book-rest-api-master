@@ -9,9 +9,12 @@ class Welcome extends React.Component{
                 <p>
                     Здесь будет находиться текст с главной страницы
                 </p>
+                <footer className={"blockquote-footer"}>
+                    Борщёв Денис
+                </footer>
             </Jumbotron>
         )
     }
 }
 
-export default Welcome
+export default Welcome;
