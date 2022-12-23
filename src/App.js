@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import NavigationBar from "./components/NavigationBar";
 import {Col, Container, Row} from "react-bootstrap";
-import Jumbotron from "react-bootstrap/cjs/Jumbotron";
+import Welcome from "./components/Welcome";
 
 
 function App() {
@@ -17,12 +17,7 @@ function App() {
             <Container>
                 <Row>
                     <Col lg={12} style={marginTop}>
-                        <Jumbotron className={"bg-dark text-white"}>
-                            <h1>Привет reactjs</h1>
-                            <p>
-                                Здесь будет находиться текст с главной страницы
-                            </p>
-                        </Jumbotron>
+                        <Welcome/>
                     </Col>
                 </Row>
             </Container>
