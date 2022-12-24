@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import NavigationBar from "./components/NavigationBar";
 import {Col, Row} from "react-bootstrap";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {Route, BrowserRouter, Switch} from 'react-router-dom'
 
 import Welcome from "./components/Welcome";
 import Footer from "./components/Footer";
@@ -18,19 +18,19 @@ function App() {
 
     return (
         <div className="App">
-            <NavigationBar/>
-            <Router>
+            <BrowserRouter>
+                <NavigationBar/>
                 <Row>
-                    <Col lg={12} style={marginTop}>
-                        <Switch>
+                    <Switch>
+                        <Col lg={12} style={marginTop}>
                             <Route path={"/"} exact component={Welcome}/>
-                            <Route path={"/add"} exact component={BookList}/>
-                            <Route path={"/list"} exact component={Book}/>
-                        </Switch>
-                    </Col>
+                            <Route path={"/add"} exact component={Book}/>
+                            <Route path={"/list"} exact component={BookList}/>
+                        </Col>
+                    </Switch>
                 </Row>
-            </Router>
-            <Footer/>
+                <Footer/>
+            </BrowserRouter>
         </div>
     );
 }

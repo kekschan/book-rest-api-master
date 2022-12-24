@@ -1,9 +1,10 @@
 import React from "react";
-import Jumbotron from "react-bootstrap/cjs/Jumbotron";
+import {Jumbotron} from "react-bootstrap";
 
-class Welcome extends React.Component{
+
+class Welcome extends React.Component {
     render() {
-        return(
+        return (
             <Jumbotron className={"bg-dark text-white"}>
                 <h1>Привет reactjs</h1>
                 <p>
