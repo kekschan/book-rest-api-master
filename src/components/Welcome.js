@@ -7,12 +7,14 @@ class Welcome extends React.Component {
         return (
             <Jumbotron className={"bg-dark text-white"}>
                 <h1>Привет reactjs</h1>
-                <p>
-                    Здесь будет находиться текст с главной страницы
-                </p>
-                <footer className={"blockquote-footer"}>
-                    Борщёв Денис
-                </footer>
+                <blockquote className={"blockquote mb-0"}>
+                    <p>
+                        Здесь будет находиться текст с главной страницы
+                    </p>
+                    <footer className={"blockquote-footer"}>
+                        Борщёв Денис
+                    </footer>
+                </blockquote>
             </Jumbotron>
         )
     }
