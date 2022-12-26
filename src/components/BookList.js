@@ -15,7 +15,10 @@ export default class BookList extends Component {
 
     componentDidMount() {
         axios.get("http://localhost:8081/rest/books")
-            .then(response => console.log(response.data));
+            .then(response => response.data)
+            .then((date) =>{
+                this.setState({books: date})
+                });
     }
 
     render() {
@@ -37,9 +40,24 @@ export default class BookList extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr className={"text-center"}>
-                            <td colSpan={6}>Книги кончились</td>
-                        </tr>
+                        {this.state.books.length === 0 ?
+                            <tr className={"text-center"}>
+                                <td colSpan={6}>Книги кончились</td>
+                            </tr>
+                            :
+                            this.state.books.map((book) => (
+                                <tr key={book.id}>
+                                    <td>{book.title}</td>
+                                    <td>{book.author}</td>
+                                    <td>{book.isbnNumber}</td>
+                                    <td>{book.price}</td>
+                                    <td>{book.language}</td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                            ))
+                        }
                         </tbody>
                     </Table>
                 </Card.Body>

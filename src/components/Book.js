@@ -8,7 +8,7 @@ export default class Book extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '', author: '', isbn: '',
+            title: '', author: '', isbnNumber: '',
             price: '', language: '', genre: ''
         };
         this.bookChange = this.bookChange.bind(this);
@@ -20,7 +20,7 @@ export default class Book extends Component {
         alert(
             ' Title: ' + this.state.title +
             ' Author: ' + this.state.author +
-            ' Isbn: ' + this.state.isbn +
+            ' Isbn: ' + this.state.isbnNumber +
             ' Price: ' + this.state.price +
             ' Language: ' + this.state.language +
             ' Genre: ' + this.state.genre);
@@ -63,8 +63,8 @@ export default class Book extends Component {
                             <Form.Group as={Col} controlId={"formGridIsbm"}>
                                 <Form.Label>ISBN номер</Form.Label>
                                 <Form.Control required
-                                              type="text" name={"isbm"}
-                                              value={this.state.isbm}
+                                              type="text" name={"isbnNumber"}
+                                              value={this.state.isbnNumber}
                                               onChange={this.bookChange}
                                               className={"bg-dark text-white"}
                                               placeholder="Введите ISBN номер"/>
