@@ -2,8 +2,22 @@ import React, {Component} from 'react';
 import {Card, Table} from "react-bootstrap";
 import {faList} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 export default class BookList extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          books : []
+        };
+    }
+
+    componentDidMount() {
+        axios.get("http://localhost:8081/rest/books")
+            .then(response => console.log(response.data));
+    }
+
     render() {
         return (
             <Card className={"border border-dark bg-dark text-white"}>
