@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Card, Table} from "react-bootstrap";
-import {faList} from "@fortawesome/free-solid-svg-icons";
+import {Button, ButtonGroup, Card, Image, Table} from "react-bootstrap";
+import {faEdit, faList, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
@@ -13,12 +13,16 @@ export default class BookList extends Component {
         };
     }
 
-    componentDidMount() {
+    findAllBooks(){
         axios.get("http://localhost:8081/rest/books")
             .then(response => response.data)
             .then((date) =>{
                 this.setState({books: date})
-                });
+            });
+    }
+
+    componentDidMount() {
+       this.findAllBooks();
     }
 
     render() {
@@ -36,7 +40,7 @@ export default class BookList extends Component {
                             <th>ISBN номер</th>
                             <th>Цена</th>
                             <th>Язык</th>
-                            <th>Жанр</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,13 +51,23 @@ export default class BookList extends Component {
                             :
                             this.state.books.map((book) => (
                                 <tr key={book.id}>
-                                    <td>{book.title}</td>
+                                    <td>
+                                        <Image src={book.coverPhotoUrl}
+                                               roundedCircle
+                                               width={25}
+                                               height={25}/> {book.title}
+                                    </td>
                                     <td>{book.author}</td>
                                     <td>{book.isbnNumber}</td>
                                     <td>{book.price}</td>
                                     <td>{book.language}</td>
                                     <td>
-
+                                        <ButtonGroup>
+                                            <Button size={"sm"} variant={"outline-primary"}>
+                                                <FontAwesomeIcon icon={faEdit}/></Button>{''}
+                                            <Button size={"sm"} variant={"outline-danger"}>
+                                                <FontAwesomeIcon icon={faTrash}/></Button>{''}
+                                        </ButtonGroup>
                                     </td>
                                 </tr>
                             ))

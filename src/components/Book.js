@@ -9,7 +9,7 @@ export default class Book extends Component {
         super(props);
         this.state = {
             title: '', author: '', isbnNumber: '',
-            price: '', language: '', genre: ''
+            price: '', language: '', action: ''
         };
         this.bookChange = this.bookChange.bind(this);
         this.submitBook = this.submitBook.bind(this);
@@ -23,7 +23,7 @@ export default class Book extends Component {
             ' Isbn: ' + this.state.isbnNumber +
             ' Price: ' + this.state.price +
             ' Language: ' + this.state.language +
-            ' Genre: ' + this.state.genre);
+            ' Action: ' + this.state.action);
         event.preventDefault();
     }
 
@@ -89,11 +89,11 @@ export default class Book extends Component {
                                               className={"bg-dark text-white"}
                                               placeholder="Введите язык"/>
                             </Form.Group>
-                            <Form.Group as={Col} controlId={"formGridGenre"}>
+                            <Form.Group as={Col} controlId={"formGridAction"}>
                                 <Form.Label>Жанр</Form.Label>
                                 <Form.Control required
-                                              type="text" name={"genre"}
-                                              value={this.state.genre}
+                                              type="text" name={"action"}
+                                              value={this.state.action}
                                               onChange={this.bookChange}
                                               className={"bg-dark text-white"}
                                               placeholder="Введите жанр"/>
