@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {Card, Table} from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class BookList extends Component{
     render() {
         return(
             <Card className={"border border-dark bg-dark text-white"}>
-                <Card.Header><FontAwesomeIcon icon="fa-solid fa-coffee" fixedWidth />
+                <Card.Header>
                     Список книг</Card.Header>
                 <Card.Body>
                     <Table bordered hover striped variant={"dark"}>
