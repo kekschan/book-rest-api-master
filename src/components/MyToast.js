@@ -5,8 +5,8 @@ export default class MyToast extends Component {
     render() {
 
         const toastCss = {
-            positions: 'fixed',
-            top: '10px',
+            position: 'fixed',
+            top: '20px',
             right: '10px',
             zIndex:'1',
             boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
