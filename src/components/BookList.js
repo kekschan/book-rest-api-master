@@ -52,7 +52,7 @@ export default class BookList extends Component {
                             this.state.books.map((book) => (
                                 <tr key={book.id}>
                                     <td>
-                                        <Image src={book.coverPhotoUrl}
+                                        <Image src={book.coverPhotoURL}
                                                roundedCircle
                                                width={25}
                                                height={25}/> {book.title}
