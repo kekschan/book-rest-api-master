@@ -38,11 +38,11 @@ export default class Book extends Component {
             coverPhotoURL: this.state.coverPhotoURL
         };
 
-        axios.post("http://localhost:8081/rest/books",book)
+        axios.post("http://localhost:8081/rest/books", book)
             .then(response => {
-                if(response.data != null){
+                if (response.data != null) {
                     this.setState({"show": true});
-                    setTimeout(() =>  this.setState({"show": false}), 3000);
+                    setTimeout(() => this.setState({"show": false}), 3000);
                 } else {
                     this.setState({"show": false});
                 }
@@ -63,9 +63,9 @@ export default class Book extends Component {
         return (
             <div>
                 <div style={{"display": this.state.show ? "block" : "none"}}>
-                    <MyToast children = {
-                        {show: this.state.show, message: "Книжка добавлена в библиотеку.",
-                            type: "success"}}/>
+                    <MyToast show={this.state.show}
+                             message={"Книжка добавлена в библиотеку."}
+                             type={"success"}/>
                 </div>
                 <Card className={"border border-dark bg-dark text-white"}>
                     <Card.Header> <FontAwesomeIcon icon={faPlusSquare}/> Добавить книгу</Card.Header>

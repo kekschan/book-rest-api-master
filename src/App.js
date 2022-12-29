@@ -24,6 +24,7 @@ function App() {
                         <Col lg={12} style={marginTop}>
                             <Route path={"/"} exact component={Welcome}/>
                             <Route path={"/add"} exact component={Book}/>
+                            <Route path={"/edit/:id"} exact component={Book}/>
                             <Route path={"/list"} exact component={BookList}/>
                         </Col>
                     </Switch>
