@@ -23,7 +23,7 @@ export default class Book extends Component {
     };
 
     componentDidMount() {
-        const bookId = +this.props.match.params.id;
+        const bookId = this.props.match.params.id;
         if (bookId) {
             this.findBookById(bookId);
         }
@@ -38,7 +38,7 @@ export default class Book extends Component {
                         id: response.data.id,
                         title: response.data.title,
                         author: response.data.author,
-                        coverPhotoUrl: response.data.coverPhotoUrl,
+                        coverPhotoURL: response.data.coverPhotoURL,
                         isbnNumber: response.data.isbnNumber,
                         price: response.data.price,
                         language: response.data.language
@@ -87,7 +87,7 @@ export default class Book extends Component {
         return this.props.history.push("/list");
     };
 
-    render(thisArg, ...argArray) {
+    render() {
         const {title, author, isbnNumber, price, language, coverPhotoURL} = this.state;
         return (
             <div>
@@ -162,7 +162,7 @@ export default class Book extends Component {
                             <Button size={"sm"} variant="info" type="reset">
                                 <FontAwesomeIcon icon={faUndo}/> Обновить
                             </Button>{' '}
-                            <Button size={"sm"} variant="info" type="button" onClick={this.bookList.bind(thisArg, ...argArray)}>
+                            <Button size={"sm"} variant="info" type="button" onClick={this.bookList.bind()}>
                                 <FontAwesomeIcon icon={faList}/> Список книг
                             </Button>
                         </Card.Footer>
