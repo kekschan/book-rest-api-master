@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Card, Col, Form} from "react-bootstrap";
-import {faPlusSquare, faSave, faUndo} from "@fortawesome/free-solid-svg-icons";
+import {faList, faPlusSquare, faSave, faUndo} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import axios from "axios";
@@ -15,16 +15,16 @@ export default class Book extends Component {
         this.bookChange = this.bookChange.bind(this);
         this.submitBook = this.submitBook.bind(this);
 
-    }
+    };
 
     initialState = {
         title: '', coverPhotoURL: '', author: '',
         isbnNumber: '', price: '', language: ''
-    }
+    };
 
     resetBook = () => {
         this.setState(() => this.initialState);
-    }
+    };
 
     submitBook = event => {
         event.preventDefault();
@@ -48,18 +48,20 @@ export default class Book extends Component {
                 }
             });
         this.setState(this.initialState);
-    }
+    };
 
     bookChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         });
-    }
+    };
+
+    bookList = () =>{
+        return this.props.history.push("/list");
+    };
 
     render() {
-
         const {title, author, isbnNumber, price, language, coverPhotoURL} = this.state;
-
         return (
             <div>
                 <div style={{"display": this.state.show ? "block" : "none"}}>
@@ -132,6 +134,9 @@ export default class Book extends Component {
                             </Button>{' '}
                             <Button size={"sm"} variant="info" type="reset">
                                 <FontAwesomeIcon icon={faUndo}/> Обновить
+                            </Button>{' '}
+                            <Button size={"sm"} variant="info" type="button" onClick={this.bookList.bind()}>
+                                <FontAwesomeIcon icon={faList}/> Список книг
                             </Button>
                         </Card.Footer>
                     </Form>
@@ -139,4 +144,4 @@ export default class Book extends Component {
             </div>
         )
     }
-}
+};
