@@ -18,9 +18,36 @@ export default class Book extends Component {
     };
 
     initialState = {
-        title: '', coverPhotoURL: '', author: '',
+        id: '', title: '', coverPhotoURL: '', author: '',
         isbnNumber: '', price: '', language: ''
     };
+
+    componentDidMount() {
+        const bookId = +this.props.match.params.id;
+        if (bookId) {
+            this.findBookById(bookId);
+        }
+    };
+
+
+    findBookById = (bookId) => {
+        axios.get("http://localhost:8081/rest/books/" + bookId)
+            .then(response => {
+                if(response.data != null) {
+                    this.setState({
+                        id: response.data.id,
+                        title: response.data.title,
+                        author: response.data.author,
+                        coverPhotoUrl: response.data.coverPhotoUrl,
+                        isbnNumber: response.data.isbnNumber,
+                        price: response.data.price,
+                        language: response.data.language
+                    });
+                }
+            }).catch((error) => {
+            console.error("Error - " + error);
+        });
+    }
 
     resetBook = () => {
         this.setState(() => this.initialState);
@@ -56,11 +83,11 @@ export default class Book extends Component {
         });
     };
 
-    bookList = () =>{
+    bookList = () => {
         return this.props.history.push("/list");
     };
 
-    render() {
+    render(thisArg, ...argArray) {
         const {title, author, isbnNumber, price, language, coverPhotoURL} = this.state;
         return (
             <div>
@@ -135,7 +162,7 @@ export default class Book extends Component {
                             <Button size={"sm"} variant="info" type="reset">
                                 <FontAwesomeIcon icon={faUndo}/> Обновить
                             </Button>{' '}
-                            <Button size={"sm"} variant="info" type="button" onClick={this.bookList.bind()}>
+                            <Button size={"sm"} variant="info" type="button" onClick={this.bookList.bind(thisArg, ...argArray)}>
                                 <FontAwesomeIcon icon={faList}/> Список книг
                             </Button>
                         </Card.Footer>
