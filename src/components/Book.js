@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Card, Col, Form} from "react-bootstrap";
-import {faList, faPlusSquare, faSave, faUndo} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faList, faPlusSquare, faSave, faUndo} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import axios from "axios";
@@ -33,7 +33,7 @@ export default class Book extends Component {
     findBookById = (bookId) => {
         axios.get("http://localhost:8081/rest/books/" + bookId)
             .then(response => {
-                if(response.data != null) {
+                if (response.data != null) {
                     this.setState({
                         id: response.data.id,
                         title: response.data.title,
@@ -68,7 +68,7 @@ export default class Book extends Component {
         axios.post("http://localhost:8081/rest/books", book)
             .then(response => {
                 if (response.data != null) {
-                    this.setState({"show": true});
+                    this.setState({"show": true, "method":"post"});
                     setTimeout(() => this.setState({"show": false}), 3000);
                 } else {
                     this.setState({"show": false});
@@ -87,18 +87,48 @@ export default class Book extends Component {
         return this.props.history.push("/list");
     };
 
+    updateBook = event => {
+        event.preventDefault();
+
+        const book = {
+            id: this.state.id,
+            title: this.state.title,
+            author: this.state.author,
+            isbnNumber: this.state.isbnNumber,
+            price: this.state.price,
+            language: this.state.language,
+            coverPhotoURL: this.state.coverPhotoURL
+        };
+
+        axios.put("http://localhost:8081/rest/books", book)
+            .then(response => {
+                if (response.data != null) {
+                    this.setState({"show": true, "method":"put"});
+                    setTimeout(() => this.setState({"show": false}), 3000);
+                    setTimeout(() => this.bookList(), 3000);
+                } else {
+                    this.setState({"show": false});
+                }
+            });
+        this.setState(this.initialState);
+    };
+
     render() {
         const {title, author, isbnNumber, price, language, coverPhotoURL} = this.state;
         return (
             <div>
                 <div style={{"display": this.state.show ? "block" : "none"}}>
                     <MyToast show={this.state.show}
-                             message={"Книжка добавлена в библиотеку."}
+                             message={this.state.method ==="put" ? "Книга в библиотеке обновлена" : "Книжка добавлена в библиотеку."}
                              type={"success"}/>
                 </div>
                 <Card className={"border border-dark bg-dark text-white"}>
-                    <Card.Header> <FontAwesomeIcon icon={faPlusSquare}/> Добавить книгу</Card.Header>
-                    <Form onReset={this.resetBook} onSubmit={this.submitBook} id={"bookFormId"}>
+                    <Card.Header>
+                        <FontAwesomeIcon
+                            icon={this.state.id ? faEdit : faPlusSquare}/> {this.state.id ? "Обновить Книгу" : "Добавить Книгу"}
+                    </Card.Header>
+                    <Form onReset={this.resetBook} onSubmit={this.state.id ? this.updateBook : this.submitBook}
+                          id={"bookFormId"}>
                         <Card.Body>
                             <Form.Row>
                                 <Form.Group as={Col} controlId={"formGridTitle"}>
@@ -157,7 +187,7 @@ export default class Book extends Component {
                         </Card.Body>
                         <Card.Footer style={{"textAlign": "right"}}>
                             <Button size={"sm"} variant="success" type="submit">
-                                <FontAwesomeIcon icon={faSave}/> Добавить
+                                <FontAwesomeIcon icon={faSave}/> {this.state.id ? "Сохранить" : "Добавить"}
                             </Button>{' '}
                             <Button size={"sm"} variant="info" type="reset">
                                 <FontAwesomeIcon icon={faUndo}/> Обновить
