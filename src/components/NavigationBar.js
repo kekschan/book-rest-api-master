@@ -17,6 +17,7 @@ export default class NavigationBar extends Component{
                 <Nav className="mr-auto">
                     <Link to={"add"} className="nav-link">Добавить книгу</Link>
                     <Link to={"list"} className="nav-link">Список книг</Link>
+                    <Link to={"users"} className="nav-link">Список пользователей</Link>
                 </Nav>
             </Navbar>
         );
