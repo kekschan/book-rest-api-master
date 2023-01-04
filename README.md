@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Маленький туториал с работой Raact.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Здесь вы сможете увидеть, как создать front-end на React.js, а также, как совместить его с Spring Boot
 
 ## Available Scripts
 
